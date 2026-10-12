@@ -1,0 +1,210 @@
+
+/* ======================================
+   HAPPY FIESTA - DEVANT SMART TV
+   FULL SCREEN BACKGROUND POSTER
+   ====================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #063985;
+}
+
+/* POSTER AS THE ENTIRE BACKGROUND */
+
+.fiesta-background {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+
+    overflow: hidden;
+
+    background-color: #063985;
+
+    /*
+      The uploaded poster is the background.
+      Keep the entire image visible without cropping.
+    */
+    background-image: url("fiesta-poster.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
+/*
+  IMPORTANT:
+  Replace the empty background-image above with the
+  filename of your actual poster, as shown below:
+
+  background-image: url("fiesta-poster.png");
+
+  Keep fiesta-poster.png beside index.html and style.css.
+*/
+
+/* FULLSCREEN BUTTON */
+
+#fullscreenBtn {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+
+    z-index: 1000;
+
+    padding: 12px 20px;
+
+    color: #063985;
+    background: #ffdc32;
+
+    border: 2px solid #ffffff;
+    border-radius: 30px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#fullscreenBtn:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+/* DISCREET BUTTON DURING PRESENTATION */
+
+:fullscreen #fullscreenBtn {
+    opacity: 0.12;
+}
+
+:fullscreen #fullscreenBtn:hover {
+    opacity: 1;
+}
+
+/* LIGHT EFFECT OVER THE POSTER */
+
+.light-effect {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background: linear-gradient(
+        115deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.22) 50%,
+        transparent 65%
+    );
+
+    background-size: 250% 100%;
+
+    animation: lightSweep 8s ease-in-out infinite;
+}
+
+/* FLOATING SPARKLES */
+
+.sparkles {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+.sparkles span {
+    position: absolute;
+    top: -40px;
+
+    color: #ffdc32;
+    text-shadow:
+        0 0 8px #ffffff,
+        0 0 18px #ffdc32;
+
+    font-size: clamp(16px, 2vw, 30px);
+
+    animation: sparkleFall 10s linear infinite;
+}
+
+.sparkles span:nth-child(1)  { left: 5%;  animation-delay: 0s; }
+.sparkles span:nth-child(2)  { left: 12%; animation-delay: 3s; }
+.sparkles span:nth-child(3)  { left: 20%; animation-delay: 1s; }
+.sparkles span:nth-child(4)  { left: 28%; animation-delay: 5s; }
+.sparkles span:nth-child(5)  { left: 36%; animation-delay: 2s; }
+.sparkles span:nth-child(6)  { left: 44%; animation-delay: 6s; }
+.sparkles span:nth-child(7)  { left: 52%; animation-delay: 4s; }
+.sparkles span:nth-child(8)  { left: 60%; animation-delay: 1.5s; }
+.sparkles span:nth-child(9)  { left: 68%; animation-delay: 7s; }
+.sparkles span:nth-child(10) { left: 76%; animation-delay: 3.5s; }
+.sparkles span:nth-child(11) { left: 84%; animation-delay: 5.5s; }
+.sparkles span:nth-child(12) { left: 92%; animation-delay: 2.5s; }
+.sparkles span:nth-child(13) { left: 32%; animation-delay: 8s; }
+.sparkles span:nth-child(14) { left: 72%; animation-delay: 6.5s; }
+
+/* ANIMATIONS */
+
+@keyframes sparkleFall {
+    0% {
+        transform: translateY(-30px) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.9;
+    }
+
+    85% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes lightSweep {
+    0%, 100% {
+        background-position: 150% 0;
+        opacity: 0.1;
+    }
+
+    50% {
+        background-position: -150% 0;
+        opacity: 0.65;
+    }
+}
+
+/* SMALL SCREEN BUTTON */
+
+@media (max-width: 600px) {
+    #fullscreenBtn {
+        top: 8px;
+        right: 8px;
+        padding: 9px 12px;
+        font-size: 11px;
+    }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    .sparkles span,
+    .light-effect {
+        animation: none;
+    }
+}
