@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Fiesta - Barangay 18-A</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- FULL SCREEN BUTTON -->
+    <button id="fullscreenBtn" onclick="toggleFullscreen()">
+        ⛶ FULL SCREEN
+    </button>
+
+    <!-- FULL SCREEN POSTER BACKGROUND -->
+    <main class="fiesta-background">
+
+        <!-- ANIMATED SPARKLES -->
+        <div class="sparkles" aria-hidden="true">
+            <span>✦</span>
+            <span>✧</span>
+            <span>✦</span>
+            <span>✧</span>
+            <span>❋</span>
+            <span>✦</span>
+            <span>✧</span>
+            <span>✦</span>
+            <span>❀</span>
+            <span>✧</span>
+            <span>✦</span>
+            <span>❋</span>
+            <span>✧</span>
+            <span>✦</span>
+        </div>
+
+        <!-- SUBTLE LIGHT EFFECT -->
+        <div class="light-effect"></div>
+
+    </main>
+
+    <script>
+        const fullscreenBtn =
+            document.getElementById("fullscreenBtn");
+
+        async function toggleFullscreen() {
+            try {
+                if (!document.fullscreenElement) {
+                    await document.documentElement.requestFullscreen();
+                } else {
+                    await document.exitFullscreen();
+                }
+            } catch (error) {
+                alert("Press F11 to enter fullscreen mode.");
+            }
+        }
+
+        document.addEventListener("fullscreenchange", () => {
+            fullscreenBtn.textContent =
+                document.fullscreenElement
+                    ? "✕ EXIT FULL SCREEN"
+                    : "⛶ FULL SCREEN";
+        });
+    </script>
+
+</body>
+</html>
